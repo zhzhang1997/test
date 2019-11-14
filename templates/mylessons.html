@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3><span class="label label-primary">已预约课程</span></h3>
+
+<h5><span class="label label-warning">提示：开课前一天不能取消</span></h5>
+
+{% for i,course in result.items %}
+    <div class="panel panel-danger" >
+      <div class="panel-heading">
+        <h3 class="panel-title">{{course.name}}</h3>
+      </div>
+      <div class="panel-body" style="margin-left: 10px">
+          <div class="row">
+              <div style="float: left; width: 68%">
+                  <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{course.date}} <br>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{course.teacher.name}} <br>
+                  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{course.belong.address}}
+              </div>
+              <div style="float: right; width: 30%;">
+<!--                          <button type="button" class="" οnclick="javascrtpt:window.location.href='http://xuezhen.natapp1.cc/subscribe'">预约</button>-->
+<!--                          <input type="button" value="预约1" class='btn btn-info' onclick="javascrtpt:jump()">-->
+                  <form method="post" action="http://zhzhang1997.natapp1.cc/cancelSubscribe/">
+                      {%csrf_token%}
+                      <input type="hidden" name="course_id" value={{course.id}} />
+                      <input type="submit" value="取消预约" class='btn btn-info'>
+                  </form>
+              </div>
+          </div>
+      </div>
+        {% if course.id ==  course_id  %}
+            <div class="alert alert-danger alert-dismissible" role="alert" style="margin: 3px">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>提示：</strong> {{warning}}
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

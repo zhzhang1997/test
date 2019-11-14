@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row">
+    <div class="thumbnail">
+      <img src="{% static 'images/index.jpg'%}">
+      <div class="caption">
+        <h3>天道体育</h3>
+        <p>拳击（英文：boxing;pugilism，法文：Boxe）是戴拳击手套进行格斗的运动项目。它既有业余的（也称奥运拳击），也有职业性质的比赛。比赛的目标是要比对方获得更多的分以战胜对方或者将对方打倒而结束比赛。与此同时比赛者要力图避开对方的打击。</p>
+        <p><a href="#" class="btn btn-primary" role="button">了解更多</a>
+      </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h3 class="panel-title"><strong>公告</strong></h3>
+  </div>
+  <div class="panel-body">
+    喜迎店铺开业，即日起免费教授跆拳道。11月3号止。
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h3 class="panel-title"><strong>公告</strong></h3>
+  </div>
+  <div class="panel-body">
+    喜迎店铺开业，即日起免费教授跆拳道。11月3号止。
+  </div>
+</div>
+
+{% endblock %}

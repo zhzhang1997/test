@@ -1,0 +1,2 @@
+from MyRobot import robot
+

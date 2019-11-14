@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3><span class="label label-primary">即将开课</span></h3>
+
+{% load set_var %}
+
+{% for i,course in result.items %}
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+                {{course.name}} &nbsp; &nbsp; (选课人数：{{course.current_number}}/{{course.max_number}})
+            </h3>
+          </div>
+          <div class="panel-body" style="margin-left: 10px">
+              <div class="row">
+                  <div style="float: left; width: 68%">
+                      <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{course.date}} <br>
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{course.teacher.name}} <br>
+                      <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{course.belong.address}}
+                  </div>
+
+                  <div class="myfunc" style="float: right; width: 25%;">
+                      {% if course.tag ==  0  %}
+                          <form method="post" action="http://zhzhang1997.natapp1.cc/subscribe/">
+                              {%csrf_token%}
+                              <input type="hidden" name="course_id" value={{course.id}} />
+                              <input type="submit" value="预约" class='btn btn-info'>
+                          </form>
+                      {% else %}
+                          <button disabled="disabled" class='btn btn-info'>已预约</button>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+            {% if course.id ==  course_id  %}
+                <div class="alert alert-danger alert-dismissible" role="alert" style="margin: 3px">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>提示：</strong> {{warning}}
+                </div>
+            {% endif %}
+        </div>
+{% endfor %}
+
+{% endblock %}

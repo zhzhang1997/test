@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天道体育</title>
+    <!-- 适应移动端 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link REL="SHORTCUT ICON" href="{% static 'images/favicon.ico' %}"/>
+    <!-- 引入 Bootstrap css文件 -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <!-- 引入 weui css文件 -->
+    <link href="{% static 'weui-2.1.2/dist/style/weui.css' %}" rel="stylesheet" type="text/css">
+    <!-- bootstrap.js 依赖 jquery.js 和popper.js，因此在这里引入 -->
+    <script src="{% static 'jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'popper/popper.js' %}"></script>
+</head>
+<body>
+
+<div class="container">
+    <!-- 引入导航栏 -->
+    {% include 'header.html' %}
+
+    <!-- 预留具体页面的位置 -->
+    {% block content %}
+
+    {% endblock content %}
+
+    <!--  解决最后一行内容被遮挡的问题  -->
+    <div style="z-index: 1000;left: 0;bottom: 0;width: 100%;height: 50px;text-align: center;">
+    </div>
+    <!-- 引入注脚 -->
+    {% include 'footer.html' %}
+</div>
+    <!-- 引入bootstrap js文件 -->
+    <script type="text/javascript" src="{% static 'jquery/jquery-3.4.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+            {
+                $('.weui-tabbar__item').eq({{ index }}).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            })
+    </script>
+</body>
+</html>
